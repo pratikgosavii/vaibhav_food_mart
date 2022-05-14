@@ -10,6 +10,8 @@ def caterers_booking(request):
 
     if request.method == "POST":
 
+        print(request.POST)
+
         forms = caterers_Form(request.POST)
         
         if forms.is_valid():
@@ -17,7 +19,8 @@ def caterers_booking(request):
             forms.save()
 
         else:
-
+            
+            print(forms.errors)
             return render(request, 'caterers_booking.html', {"forms" : forms})
 
     

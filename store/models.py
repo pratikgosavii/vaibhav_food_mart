@@ -18,6 +18,7 @@ class product(models.Model):
     image = models.ImageField(upload_to='media/product/images')
     unit = models.CharField(max_length=1000)
     price = models.IntegerField()
+    dis = models.CharField( max_length=500)
     
 
     def __str__(self):

@@ -11,10 +11,8 @@ from django.conf.urls.static import static
 urlpatterns = [
 
 
+    path('', rooms, name='rooms'),
 
-    # path('table-booking', table_booking, name='table_booking'),
-    # path('room-booking', room_booking, name='room_booking'),
-    path('caterers-booking', caterers_booking, name='caterers_booking'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL,

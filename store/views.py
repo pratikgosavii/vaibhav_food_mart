@@ -8,6 +8,16 @@ from .forms import *
 
 # Create your views here.
 
+
+
+def view_store(request):
+
+    data = product.objects.all()
+
+    return render(request, 'store.html', {'data' : data})
+
+
+
 def add_to_cart(request):
 
 
