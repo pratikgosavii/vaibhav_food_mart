@@ -1,0 +1,95 @@
+*,
+*::after,
+*::before {
+  box-sizing: 0;
+}
+
+:root {
+  --yellow-bg: #ffc000;
+  --chocolate-bg: #561c1b;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Ralway", sans-serif;
+}
+
+.navbar {
+  /* height: 70px; */
+  background-color: var(--chocolate-bg) !important;
+}
+.navbar-brand {
+  font-weight: bold;
+}
+.nav-item {
+  font-weight: 600;
+  line-height: 1em;
+  border-radius: 999px;
+  transition: background-color 0.3s ease;
+}
+.nav-item:hover {
+  background-color: var(--yellow-bg);
+}
+
+.dropdown-menu[data-bs-popper] {
+  top: 100%;
+  left: 0;
+  margin-top: 1rem;
+  background-color: var(--yellow-bg);
+}
+
+.dropdown-item {
+  padding: 0.75rem;
+  transition: all 0.3s ease;
+}
+.dropdown-item:hover {
+  color: white;
+  background-color: var(--chocolate-bg);
+  font-weight: 600;
+}
+
+.hero-section {
+    position: relative;
+    height: 80vh;
+}
+.hero-section > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.hero-section h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 2.5em;
+    font-weight: 800;
+    color: #fff;
+    margin-top: -170px;
+    margin-left: 80px;
+    text-shadow: 0px 0px 11px #333;
+}
+
+.hero-section::before {
+    content: "";
+    background-image: url('http://vaibhavfoods.in/demo/wp-content/uploads/2020/01/Slider_1_1-6.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80vh;
+    margin-top: -100px;
+    z-index: -1;
+}
+
+.hero-img {
+    margin-top: -100px;
+    height: 600px;
+    width: 100%;
+}
+
+@media only screen and (min-width: 992px) {
+  .navbar {
+    height: 70px;
+  }
+}
