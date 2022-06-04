@@ -12,6 +12,8 @@ urlpatterns = [
 
 
     path('', rooms, name='rooms'),
+    path('book-room', book_room, name='book_room'),
+    path('test', test, name='test'),
 
 
 ]

@@ -1,10 +1,13 @@
 from math import prod
 from multiprocessing import context
+from re import U
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from numpy import place
 from .models import *
 from .forms import *
+
+from account.models import *
 
 # Create your views here.
 
@@ -23,16 +26,44 @@ def add_to_cart(request):
 
     if request.method == "POST":
 
-        product_id = request.POST.get('product_id')
-        qty = request.POST.get('qty')
+        print('here')
 
-        product_instance = product.objects.get(id = product_id)
+        qty = request.POST.get('qty')
+        unit_id = request.POST.get('unit_id')
+
+        print(unit_id)
+
+        if unit_id:
+
+            unit_instance = product_unit.objects.get(id = unit_id)
+            product_instance = unit_instance.product
+
+        else:
+
+            product_id = request.POST.get('product_id')
+            product_instance = product.objects.get(id = product_id)
+            unit_instance = product_unit.objects.get(product = product_instance)
+        
+
+        print(unit_instance)
+        print(product_instance)
+        print(qty)
 
         try:
-            cart.objects.create(product = product_instance, qty = qty)
-            return JsonResponse({'result' : True})
+            
+            try:
+                a = cart.objects.get(product = product_instance, user = request.user, unit = unit_instance)
+                a.qty = qty
+                a.save()
+                return JsonResponse({'result' : True})
+            except cart.DoesNotExist:
+                print('here')
+                a = cart.objects.create(product = product_instance, qty = qty, user = request.user, unit = unit_instance)
+                return JsonResponse({'result' : True})
+                
 
         except:
+            print('here')
             return JsonResponse({'result' : False})
     
 def view_cart(request):
@@ -43,13 +74,18 @@ def view_cart(request):
     total_items = cart_data.count()
 
     cart_price = 0
-    for i in total_items:
-        cart_price = cart_price + i.price
+    for i in cart_data:
+        cart_price = cart_price + i.product.price
+
+
+    address_data = address.objects.filter(user = request.user)
 
     context = {
         'data' : cart_data,
         'total_items' : total_items,
-        'cart_price' : cart_price
+        'cart_price' : cart_price,
+        'address_data' : address_data,
+        'cart_data' : cart_data
     }
 
     return render(request, 'cart.html', context)
@@ -63,6 +99,24 @@ def delete_from_cart(request, cart_id):
 
     return redirect('cart')
 
+
+
+from django.core import serializers
+
+# assuming obj is a model instance
+
+
+def product_option(request):
+
+    product_id = request.POST.get('product_id')
+
+    product_instance = product.objects.get(id = product_id)
+
+    data = product_unit.objects.filter(product = product_instance)
+
+    serialized_obj = serializers.serialize('json', data, use_natural_foreign_keys=True)
+
+    return JsonResponse({ 'result' : serialized_obj})
 
 
 def placeorder(request):
@@ -98,50 +152,11 @@ def placeorder(request):
 
         return render(request, 'placeorder1.html')
 
-def add_address(request):
-
-    if request.method == "POST":
-
-        forms = address_Form(request.POST)
-
-        if forms.is_vaild():
-            forms.save()
-            
-        else:
-            return render(request, 'show_address.html', {'forms' : forms})
-
-    else:
-        
-
-        return render(request, 'show_address.html')
-
-
-def show_address(request):
-
-    if request.method == "POST":
-
-        address_id = request.POST.get('address_id')
-
-        request.session['address_id'] = address_id
-
-        return redirect('placeorder')
-
-    else:
-            
-        address_data = address.objects.filter(user = request.user)
-
-        return render(request, 'show_address.html', {'address': address_data})
-
-
-
-
 def admin_orders_page(request):
 
     orders_data = placeorder.objects.all()
 
     return render(request, 'admin_orders_page', {'orders_data': orders_data})
-
-
 
 
 def ajax_admin_orders_page(request, order_id):

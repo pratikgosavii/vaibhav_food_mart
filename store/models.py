@@ -10,13 +10,14 @@ from django.contrib.auth import get_user_model
 from razorpay import Payment
 User = get_user_model()
 
+from account.models import *
+
 
 
 class product(models.Model):
 
     name = models.CharField(max_length=1000)
     image = models.ImageField(upload_to='media/product/images')
-    unit = models.CharField(max_length=1000)
     price = models.IntegerField()
     dis = models.CharField( max_length=500)
     
@@ -24,29 +25,36 @@ class product(models.Model):
     def __str__(self):
         return self.name
 
+    
+    def natural_key(self):
+        return (self.name)
+
+class product_unit(models.Model):
+
+    product = models.ForeignKey(product,related_name="unit_details",  on_delete=models.CASCADE)
+    unit = models.CharField(max_length=1000)
+    price = models.IntegerField()
+
+
+    def __str__(self):
+        return self.product.name
+
+    def natural_key(self):
+        return (self.product.name)
+
+
+
 class cart(models.Model):
 
     product = models.ForeignKey(product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     qty = models.IntegerField()
+    unit = models.ForeignKey(product_unit, on_delete=models.CASCADE)
     
 
     def __str__(self):
         return self.product.name
 
-
-class address(models.Model):
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-    mobile = models.CharField(max_length=50)
-    pincode = models.CharField(max_length=50)
-    address = models.CharField(max_length=50)
-    landmark = models.CharField(max_length=50)
-    
-
-    def __str__(self):
-        return self.name
 
 
 
@@ -75,7 +83,7 @@ class placeorder(models.Model):
     
 
     def __str__(self):
-        return self.name
+        return self.status
 
 
 

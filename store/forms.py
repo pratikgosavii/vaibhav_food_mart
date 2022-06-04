@@ -13,10 +13,5 @@ class product_Form(forms.ModelForm):
         fields = '__all__'
        
        
-
-class address_Form(forms.ModelForm):
-    class Meta:
-        model = address
-        fields = '__all__'
        
        

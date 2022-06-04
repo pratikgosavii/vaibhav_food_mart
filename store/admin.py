@@ -6,3 +6,6 @@ from .models import *
 
 
 admin.site.register(product)
+admin.site.register(cart)
+admin.site.register(product_unit)
+admin.site.register(placeorder)

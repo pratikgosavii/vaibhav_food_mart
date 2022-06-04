@@ -1,19 +1,31 @@
-<html>
+{% extends 'base.html' %}
+{% load static %}
 
-<body>
+{% block content %}
+<section class="table-booking px-3">
+    <form class="rounded d-flex p-3 bg-light flex-column gap-3" style="max-width: 440px; width:100%" action="{% url 'caterers_booking' %}" method="post">
 
-    <form method="post" action="{% url 'caterers_booking' %}">
         {% csrf_token %}
-        <input type="text" name="name">
-        <input type="number" name="mobile_no">
-        <input type="text" name="service" value="Preparations only">
-        <label for="birthdaytime">Birthday (date and time):</label>
-<input type="text" id="birthdaytime" value="1212-12-12 22:22:22" name="date_time">
-        <input type="submit" value="submit">
 
+        <h3 class="text-center">Book Caterers</h3>
+        <div class="form-group">
+            <input class="form-control" name="date_time" type="datetime-local">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="name" type="text" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="mobile_no" type="text" placeholder="Mobile No">
+        </div>
+        <div class="form-group">
+            <select class="form-select" name="service" aria-label="Default select example">
+                <option selected>Service</option>
+                <option value="Preparations only">Preparations only</option>
+                <option value="Preparations/Transportation's">Preparations/Transportation's</option>
+                <option value="Preparation/Transportation/Staff">Preparation/Transportation/Staff</option>
+              </select>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Book Now!">
     </form>
-</body>
-
-
-
-</html>
+</section>
+{% endblock %}

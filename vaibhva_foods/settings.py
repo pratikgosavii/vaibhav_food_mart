@@ -25,7 +25,7 @@ SECRET_KEY = '-h^b&bitq-9nea$)(&lj($2yy($2qtiu+5q7t$f-)3n7+7dj!+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'store',
     'bookings',
-    'rooms'
+    'rooms',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -124,7 +125,8 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL='account.Myuser'
+
 
 
 

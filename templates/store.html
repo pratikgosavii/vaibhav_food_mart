@@ -37,6 +37,7 @@
                 </div>
             </div>
             <div class="col-md-9">
+                {% csrf_token %}
 
                 {% for i in data %}
 
@@ -47,7 +48,22 @@
                         <img class=" card-img-top"
                             src="{{ i.image.url }}"
                             alt="Card image cap">
-                        <a href="#" class="btn btn-primary btn-sm">Add</a>
+                            <div class="d-flex">
+                               
+                                
+                                <div>
+                                    {% if i.unit_details.all|length >= 2 %}
+                                        <a class="btn btn-primary" id="add_to" onclick="openModal({{ i.id }})">Add</a>
+                                    {% else %}
+                                    <input type="text" style="width: 35%;
+                                    text-align: center;
+                                    margin-right: 11px;" id="{{ i.id }}" name="qty" id="qty" class="form-control" value="1">  </div>
+                                
+                                        <a onclick="add_to_cart({{ i.id }})" class="btn btn-primary">Add</a>
+                                    {% endif %}
+
+                                </div>
+                            </div>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title mb-0">{{ i.name }}</h5>
@@ -113,4 +129,184 @@
     </div>
     <!-- List and filters ends -->
 
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class="modal-content" id="myform">
+                <div class="modal-header pb-0">
+                    <div>
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <p class="text-muted">$230</p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-column gap-3">
+                    <h5 class="modal-title">Unit</h5>
+
+
+                    
+                    <div id="dynamic">  
+                </div>
+                <input type="text" style="width: 35%;
+                text-align: center;
+                margin-right: 11px;" id="{{ i.id }}" name="qty" id="qty" class="form-control" value="1">  </div>
+            
+                <div class="modal-footer d-flex">
+                    <button type="submit" style="width: 100%;" class="btn btn-secondary d-flex justify-content-between align-items-center" data-bs-dismiss="modal">
+                        <span class="d-block">TOTAL <b>$230</b></span> 
+                        <span  class="d-block">ADD ITEM</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+  
+
+    <!-- Modal -->
+    <!-- popup code end -->
 {% endblock content %}
+
+    {% block script %}
+
+<script>
+
+
+        function add_to_cart(id){
+
+
+            qty = document.getElementById(id).value;
+                    
+            $.ajax({
+                cache: false, // initialize an AJAX request
+                type: "POST",
+                url: "{% url 'add_to_cart' %}",
+                data: {
+                    csrfmiddlewaretoken:  '{{ csrf_token  }}',
+                    product_id : id,
+                    qty: qty, // ad
+                },
+        
+
+
+    
+                success: function (data) {
+  
+    
+                  alert('done')
+                }
+
+                
+                });
+                
+
+          
+
+            }
+
+
+            function openModal(id) {
+
+                $.ajax({
+                    cache: false, // initialize an AJAX request
+                    type: "POST",
+                    url: "{% url 'product_option' %}",
+                    data: {
+                        csrfmiddlewaretoken:  '{{ csrf_token  }}',
+                        product_id : id,
+                    
+                    },
+            
+        
+                    success: function (data) {
+                        
+                       
+
+                        data = JSON.parse(data.result)
+
+
+                        console.log(data)
+
+
+
+                        let option = ''
+                        
+
+                        for (let i = 0; i < data.length; i++) {
+
+                            
+
+                            option+= `<div class="d-flex justify-content-between align-items-center"> 
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="radio" value="` + data[i].pk + `" name="unitradio" id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">`+  
+                                                data[i].fields.unit +
+                                                `- <span class="text-muted">`+ data[i].fields.price +`</span>  
+                                            </label>
+
+                                 
+
+                                        </div> 
+                                       
+                                    </div>`
+                            
+                              
+                            }
+
+                            
+                        $('#exampleModalLabel').html(data[0].fields.product)
+
+                        $('#dynamic').append(option)        
+        
+                            var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {})
+
+                            myModal.show();
+    
+                      
+                    }
+
+                    
+                    });
+                    
+
+
+                    }
+
+
+                    document.getElementById("myform").addEventListener("submit", function(event){
+                        event.preventDefault()
+
+                        let unit_id = event.target.unitradio.value
+                        let qty = event.target.qty.value
+
+
+
+                        $.ajax({
+                            cache: false, // initialize an AJAX request
+                            type: "POST",
+                            url: "{% url 'add_to_cart' %}",
+                            data: {
+                                csrfmiddlewaretoken:  '{{ csrf_token  }}',
+                                unit_id : unit_id,
+                                qty: qty, // ad
+                            },
+                    
+            
+            
+                
+                            success: function (data) {
+              
+                
+                              alert('done')
+                            }
+            
+                            
+                            });
+                
+
+
+                      });
+
+</script>
+
+{% endblock script %}
+

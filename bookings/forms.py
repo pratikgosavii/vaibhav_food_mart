@@ -12,3 +12,10 @@ class caterers_Form(forms.ModelForm):
         model = caterers
         fields = '__all__'
        
+
+
+class table_Form(forms.ModelForm):
+    class Meta:
+        model = table
+        fields = '__all__'
+       

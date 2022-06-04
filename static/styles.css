@@ -1,197 +1,396 @@
 *,
 *::after,
 *::before {
-  box-sizing: 0;
+    box-sizing: 0;
 }
 
 :root {
-  --yellow-bg: #ffc000;
-  --chocolate-bg: #561c1b;
+    --yellow-bg: #ffc000;
+    --chocolate-bg: #561c1b;
 }
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Ralway", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: "Ralway", sans-serif;
 }
 
 .navbar {
-  /* height: 70px; */
-  background-color: var(--chocolate-bg) !important;
+    /* height: 70px; */
+    background-color: var(--chocolate-bg) !important;
 }
+
 .navbar-brand {
-  font-weight: bold;
+    font-weight: bold;
 }
+
 .nav-item {
-  font-weight: 600;
-  line-height: 1em;
-  border-radius: 999px;
-  transition: background-color 0.3s ease;
+    font-weight: 600;
+    line-height: 1em;
+    border-radius: 999px;
+    transition: background-color 0.3s ease;
 }
+
 .nav-item:hover {
-  background-color: var(--yellow-bg);
+    background-color: var(--yellow-bg);
 }
 
 .dropdown-menu[data-bs-popper] {
-  top: 100%;
-  left: 0;
-  margin-top: 1rem;
-  background-color: var(--yellow-bg);
+    top: 100%;
+    left: 0;
+    margin-top: 1rem;
+    background-color: var(--yellow-bg);
 }
 
 .dropdown-item {
-  padding: 0.75rem;
-  transition: all 0.3s ease;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
 }
+
 .dropdown-item:hover {
-  color: white;
-  background-color: var(--chocolate-bg);
-  font-weight: 600;
+    color: white;
+    background-color: var(--chocolate-bg);
+    font-weight: 600;
 }
 
 .hero-section {
-  position: relative;
-  height: 80vh;
+    position: relative;
+    height: 80vh;
 }
-.hero-section > div {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+
+.hero-section>div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
 .hero-section h1 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 2.5em;
-  font-weight: 800;
-  color: #fff;
-  margin-top: -170px;
-  margin-left: 120px;
-  text-shadow: 0px 0px 11px #333;
+    font-family: "Montserrat", sans-serif;
+    font-size: 2.5em;
+    font-weight: 800;
+    color: #fff;
+    margin-top: -170px;
+    margin-left: 120px;
+    text-shadow: 0px 0px 11px #333;
 }
 
 .hero-section::before {
-  content: "";
-  background-image: url("http://vaibhavfoods.in/demo/wp-content/uploads/2020/01/Slider_1_1-6.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80vh;
-  margin-top: -100px;
-  z-index: -1;
+    content: "";
+    background-image: url("http://vaibhavfoods.in/demo/wp-content/uploads/2020/01/Slider_1_1-6.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80vh;
+    margin-top: -100px;
+    z-index: -1;
 }
 
 .hero-img {
-  margin-top: -100px;
-  height: 600px;
-  width: 100%;
+    margin-top: -100px;
+    height: 600px;
+    width: 100%;
 }
 
+
 /* ------ Store Section starts ------- */
+
 .store-hero {
-  position: relative;
-  height: 60vh;
+    position: relative;
+    height: 60vh;
 }
+
 .store-hero::before {
-  content: "";
-  background-image: url("http://vaibhavfoods.in/wp-content/uploads/2020/02/Hotel.jpg?id=1319");
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60vh;
+    content: "";
+    background-image: url("http://vaibhavfoods.in/wp-content/uploads/2020/02/Hotel.jpg?id=1319");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60vh;
+}
+
+.sweet-hero {
+    position: relative;
+    height: 60vh;
+}
+
+.sweet-hero {
+    padding-top: 233px !important;
+    padding-bottom: 233px !important;
+    background-image: url("http://vaibhavfoods.in/wp-content/uploads/2020/02/sweets-4.jpg?id=1358) !important;");
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.resturant-hero {
+    position: relative;
+    height: 60vh;
+}
+
+.resturant-hero {
+    padding-top: 233px !important;
+    padding-bottom: 233px !important;
+    background-image: url(http://vaibhavfoods.in/wp-content/uploads/2020/02/RESTAURANT-2.jpg?id=1376) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.birthday-hero {
+    position: relative;
+    height: 60vh;
+}
+
+.birthday-hero {
+    padding-top: 233px !important;
+    padding-bottom: 233px !important;
+    background-image: url("http://vaibhavfoods.in/wp-content/uploads/2020/01/table_booking_1.jpg?id=1191) !important");
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.catering-hero {
+    position: relative;
+    height: 60vh;
+}
+
+.catering-hero {
+    padding-top: 233px !important;
+    padding-bottom: 233px !important;
+    background-image: url("http://vaibhavfoods.in/wp-content/uploads/2020/01/Caterers_2-1.jpg?id=1231) !important;");
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.bir-hero {
+    position: relative;
+    height: 60vh;
+}
+
+.bir-hero {
+    padding-top: 233px !important;
+    padding-bottom: 233px !important;
+    background-image: url("http://vaibhavfoods.in/wp-content/uploads/2020/01/Caterers_1.jpg?id=1232) !important");
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
 }
 
 .filter-item {
-  padding: 0.5rem 1.5rem 0.5rem 1rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
+    padding: 0.5rem 1.5rem 0.5rem 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .filter-item.active,
 .filter-item:hover {
-  background-color: #fcfcfc;
-  border-right: 5px solid var(--chocolate-bg);
+    background-color: #fcfcfc;
+    border-right: 5px solid var(--chocolate-bg);
 }
+
 
 /* ------ Store Section ends -------*/
 
 @media only screen and (min-width: 992px) {
-  .navbar {
-    height: 70px;
-  }
+    .navbar {
+        height: 70px;
+    }
 }
 
+
 /* ----- cart html style starts ----- */
+
 .cart-card {
- position: relative;
+    position: relative;
 }
 
 .cart-link.nav-link.active {
-  background-color: var(--chocolate-bg);
-}
-.cart-link.nav-item {
-  border-radius: 0.25em;
-}
-.cart-link.nav-item > * {
-  color: var(--chocolate-bg);
+    background-color: var(--chocolate-bg);
 }
 
-.cart-link.nav-item:hover, .cart-link.nav-item > * {
-  border-radius: 0.25em;
+.cart-link.nav-item {
+    border-radius: 0.25em;
 }
+
+.cart-link.nav-item>* {
+    color: var(--chocolate-bg);
+}
+
+.cart-link.nav-item:hover,
+.cart-link.nav-item>* {
+    border-radius: 0.25em;
+}
+
 
 /* ----- cart html style starts ----- */
+
 .cart-card {
-  position: relative;
+    position: relative;
 }
 
 .cart-card .cart-side-icon {
-  position: absolute;
-  height: 48px;
-  width: 48px;
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  background-color: var(--chocolate-bg);
-  top: 20%;
-  left: -32px;
-  color: white;
+    position: absolute;
+    height: 48px;
+    width: 48px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    background-color: var(--chocolate-bg);
+    top: 20%;
+    left: -32px;
+    color: white;
 }
 
 .address-card {
-  font-size: .8em;
+    font-size: .8em;
 }
+
 .address-card h5 {
-  font-size: 1.3em;
-  font-weight: bold;
+    font-size: 1.3em;
+    font-weight: bold;
 }
-/* ----- boostrap overrides starts ----- */
-.btn {
-  background-color: var(--yellow-bg);
-  transition: background-color 0.3s ease;
+
+
+/* 
+.address-card .cicon {
+  background: var(--chocolate-bg);
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
   color: white;
-  border: none;
+} */
+
+.title-name {
+    font-weight: 700;
+    font-size: 1.3em;
+    font-family: 'Montserrat';
+    line-height: .8em;
 }
+
+.bill-details h5 {
+    font-size: 1rem;
+    font-family: 'Montserrat';
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+}
+
+.counter input {
+    outline: none;
+    border: 1px solid #ccc;
+    width: 50px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.counter button {
+    height: 32px;
+    width: 32px;
+    border: none;
+    font-size: 1.5em;
+    line-height: .4em;
+    padding: .3em;
+    background: var(--yellow-bg);
+    color: #fff;
+}
+
+.product {
+    font-size: 1.2rem;
+}
+
+
+/* ----- boostrap overrides starts ----- */
+
+.btn {
+    background-color: var(--yellow-bg);
+    transition: background-color 0.3s ease;
+    color: white;
+    border: none;
+}
+
 .btn:hover {
-  background-color: var(--chocolate-bg);
+    background-color: var(--chocolate-bg);
 }
 
 .card {
-  border: none;
-  padding: 1em;
+    border: none;
+    padding: 1em;
 }
+
 .card-body {
-  padding: 0.5rem;
+    padding: 0.5rem;
 }
 
 .card .card-img-top {
-  height: 117px;
-  width: 117px;
-  border-radius: 0.25rem;
-  overflow: hidden;
+    height: 117px;
+    width: 117px;
+    border-radius: 0.25rem;
+    overflow: hidden;
 }
+
+
 /* ----- boostrap overrides ends ----- */
+
+
+/* ----- Table Booking Starts ----- */
+
+.table-booking {
+    position: relative;
+    height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.table-booking::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-image: url('http://vaibhavfoods.in/demo/wp-content/uploads/2020/01/Table_1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: calc(100vh - 70px);
+    z-index: -1;
+}
+
+.lodding-booking {
+    position: relative;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.lodding-booking::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-image: url('http://vaibhavfoods.in/wp-content/uploads/2020/03/rooms_1-5.jpg?id=1443');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    z-index: -1;
+}
+
+
+/* ----- Table Booking Ends ----- */

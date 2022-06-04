@@ -22,3 +22,14 @@ class caterers(models.Model):
     def __str__(self):
         return self.name
 
+class table(models.Model):
+
+    name = models.CharField(max_length=50)
+    date_time = models.DateTimeField(auto_now=False, auto_now_add=False)
+    mobile_no = models.IntegerField()
+    persons = models.IntegerField(max_length=100)
+    
+
+    def __str__(self):
+        return self.name
+

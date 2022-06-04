@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="table-booking px-3">
+    <form class="rounded d-flex p-3 bg-light flex-column gap-3" style="max-width: 440px; width:100%" action="{% url 'table_booking' %}" method="post">
+
+        {% csrf_token %}
+
+        <h3 class="text-center">Book Table</h3>
+        <div class="form-group">
+            <input class="form-control" name="date_time" type="datetime-local">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="name" type="text" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="persons" type="text" placeholder="No of persons">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="mobile_no" type="text" placeholder="Mobile No">
+        </div>
+        <div class="form-group">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Service</option>
+                <option value="Preparations only">Preparations only</option>
+                <option value="Preparations/Transportation's">Preparations/Transportation's</option>
+                <option value="Preparation/Transportation/Staff">Preparation/Transportation/Staff</option>
+              </select>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Book Now!">
+    </form>
+</section>
+{% endblock %}

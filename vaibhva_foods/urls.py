@@ -24,10 +24,16 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', index, name="index"),
+    path('hotel-services', hotel_services, name="hotel_services"),
+    path('restaurant-services', restaurant_services, name="restaurant_services"),
+    path('catering-services', catering_services, name="catering_services"),
+    path('lodging-services', lodging_services, name="lodging_services"),
+    path('', index, name="index"),
     path('admin/', admin.site.urls),
     path('store/', include('store.urls')),
     path('bookings/', include('bookings.urls')),
     path('rooms/', include('rooms.urls')),
+    path('account/', include('account.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,

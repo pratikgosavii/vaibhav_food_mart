@@ -15,9 +15,9 @@ urlpatterns = [
     path('Add-to-cart/', add_to_cart, name='add_to_cart'),
     path('Cart/', view_cart, name='view_cart'),
     path('Delete-to-cart/', delete_from_cart, name='delete_from_cart'),
+    
+    path('product-option/', product_option, name='product_option'),
 
-    path('Add-address/', add_address, name='add_address'),
-    path('Show-address/', show_address, name='show_address'),
 
 
     path('placeorder', placeorder, name='placeorder'),
